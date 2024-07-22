@@ -25,3 +25,8 @@ Route::post('/seller/category', [App\Http\Controllers\Api\CategoryController::cl
 //get all categories
 Route::get('/seller/categories', [App\Http\Controllers\Api\CategoryController::class, 'index'])->middleware('auth:sanctum');
 
+//product
+Route::apiResource('/seller/products', App\Http\Controllers\Api\ProductController::class)->middleware('auth:sanctum');
+
+//update product
+Route::post('/seller/products/{id}', [App\Http\Controllers\Api\ProductController::class, 'update'])->middleware('auth:sanctum');
