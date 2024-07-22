@@ -30,3 +30,9 @@ Route::apiResource('/seller/products', App\Http\Controllers\Api\ProductControlle
 
 //update product
 Route::post('/seller/products/{id}', [App\Http\Controllers\Api\ProductController::class, 'update'])->middleware('auth:sanctum');
+
+//address
+Route::apiResource('/buyer/addresses', App\Http\Controllers\Api\AddressController::class)->middleware('auth:sanctum');
+
+//order
+Route::post('/buyer/orders', [App\Http\Controllers\Api\OrderController::class, 'createOrder'])->middleware('auth:sanctum');
