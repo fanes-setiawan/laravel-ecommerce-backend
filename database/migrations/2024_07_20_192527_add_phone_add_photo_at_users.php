@@ -12,16 +12,22 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->setring('phone')->nullable()->after('password');
-            $table->setring('address')->nullable()->after('phone');
-            $table->setring('country')->nullable()->after('address');
-            $table->setring('province')->nullable()->after('country');
-            $table->setring('city')->nullable()->after('province');
-            $table->setring('district')->nullable()->after('city');
-            $table->setring('postal_code')->nullable()->after('distict');
-            $table->setring('roles')->nullable()->after('postal_code');
-            $table->setring('photo')->nullable()->after('roles');
-            
+            $table->string('phone')->nullable()->after('password');
+            $table->string('address')->nullable()->after('phone');
+            //country
+            $table->string('country')->nullable()->after('address');
+            //province
+            $table->string('province')->nullable()->after('country');
+            //city
+            $table->string('city')->nullable()->after('province');
+            //district
+            $table->string('district')->nullable()->after('city');
+            //postal_code
+            $table->string('postal_code')->nullable()->after('district');
+            //roles
+            $table->string('roles')->default('user')->after('postal_code');
+            //photo
+            $table->string('photo')->nullable()->after('roles');
         });
     }
 
@@ -32,7 +38,7 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->dropColumn('phone');
-            $table->dropColumn('address'); 
+            $table->dropColumn('address');
             $table->dropColumn('country');
             $table->dropColumn('province');
             $table->dropColumn('city');
