@@ -47,18 +47,18 @@ class OrderController extends Controller
         ]);
 
         foreach ($request->items as $item) {
-            $order->items()->create([
-                'product_id' => $item['product_id'],
-                'price' => $item['price'],
-                'quantity' => $item['quantity'],
-            ]);
-            // $product = Product::find($item['product_id']);
-            // OrderItem::create([
-            //     'order_id' => $order->id,
+            // $order->items()->create([
             //     'product_id' => $item['product_id'],
-            //     'price' => $product->price,
+            //     'price' => $item['price'],
             //     'quantity' => $item['quantity'],
             // ]);
+            $product = Product::find($item['product_id']);
+            OrderItem::create([
+                'order_id' => $order->id,
+                'product_id' => $item['product_id'],
+                'price' => $product->price,
+                'quantity' => $item['quantity'],
+            ]);
         }
 
         return response()->json([
